@@ -21,6 +21,25 @@
         <artifactId>mail</artifactId>
         <version>${mail.version}</version>
     </dependency>
+<!--    servlet-->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
+        <scope>provided</scope>
+    </dependency>
+<!--    jackson-->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+    </dependency>
+<!--    fastjson-->
+    <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+    </dependency>
 <!--    redis-->
     <dependency>
         <groupId>redis.clients</groupId>
@@ -29,6 +48,9 @@
     </dependency>
 </dependencies>
     <properties>
+        <fastjson.version>2.0.25</fastjson.version>
+        <jackson.version>2.14.2</jackson.version>
+        <servlet.version>4.0.1</servlet.version>
         <mail.version>1.4.7</mail.version>
         <jedis.version>4.3.1</jedis.version>
         <mybatis.version>3.5.13</mybatis.version>
