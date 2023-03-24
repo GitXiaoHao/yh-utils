@@ -21,6 +21,8 @@ public class SendEmailUtil {
      * @param to    收件人
      * @param text  邮件文本内容
      * @param title 邮件标题
+     * @param user 哪个邮箱发送
+     * @param password 密码
      * @return
      */
     public static Boolean sendEmail(String to, String text, String title, String user, String password) {
@@ -45,16 +47,15 @@ public class SendEmailUtil {
             // 通过session得到transport对象
             Transport ts = session.getTransport();
             // 连接邮件服务器：邮箱类型，帐号，16位授权码
-            ts.connect("smtp.qq.com",
-                    Optional.ofNullable(user).ofNullable("2486245007").toString()
-                    , Optional.ofNullable(password).ofNullable("obgkxrnirkeyeabf").toString());
+            ts.connect("smtp.qq.com",user,password);
             // 创建邮件
-            Message message = createSimpleMail(session, to, text, title);
+            Message message = createSimpleMail(session, to, text, title,user);
             // 发送邮件
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();
         } catch (Exception e) {
             //发送失败
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -65,14 +66,15 @@ public class SendEmailUtil {
      * @param to      收件人
      * @param text    邮件文本内容
      * @param title   邮件标题
+     * @param user 发件人
      * @return
      * @throws Exception
      */
-    public static MimeMessage createSimpleMail(Session session, String to, String text, String title) throws Exception {
+    public static MimeMessage createSimpleMail(Session session, String to, String text, String title,String user) throws Exception {
         // 创建邮件对象
         MimeMessage message = new MimeMessage(session);
         // 指明邮件的发件人
-        message.setFrom(new InternetAddress(to));
+        message.setFrom(new InternetAddress(user));
         // 指明邮件的收件人
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
         // 邮件的标题

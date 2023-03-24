@@ -56,4 +56,7 @@ public class BaseServlet extends HttpServlet {
         BufferedReader reader = request.getReader();
         return (T) JSON.parseObject( reader.readLine(), obj.getClass());
     }
+    public void writeValueAsGetWrite(HttpServletResponse response,String string) throws IOException {
+        response.getWriter().write(string);
+    }
 }

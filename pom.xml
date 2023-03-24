@@ -17,8 +17,8 @@
     </dependency>
 <!--    mail-->
     <dependency>
-        <groupId>javax.mail</groupId>
-        <artifactId>mail</artifactId>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
         <version>${mail.version}</version>
     </dependency>
 <!--    servlet-->
@@ -51,7 +51,7 @@
         <fastjson.version>2.0.25</fastjson.version>
         <jackson.version>2.14.2</jackson.version>
         <servlet.version>4.0.1</servlet.version>
-        <mail.version>1.4.7</mail.version>
+        <mail.version>1.6.2</mail.version>
         <jedis.version>4.3.1</jedis.version>
         <mybatis.version>3.5.13</mybatis.version>
     </properties>
