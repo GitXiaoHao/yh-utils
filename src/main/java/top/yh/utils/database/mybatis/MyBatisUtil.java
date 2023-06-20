@@ -1,4 +1,4 @@
-package top.yh.database.utils;
+package top.yh.utils.database.mybatis;
 
 
 import org.apache.ibatis.io.Resources;

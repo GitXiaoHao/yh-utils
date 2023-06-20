@@ -1,4 +1,4 @@
-package top.yh.email.utils;
+package top.yh.utils.email;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 
@@ -25,7 +25,7 @@ public class SendEmailUtil {
      * @param password 密码
      * @return
      */
-    public static Boolean sendEmail(String to, String text, String title, String user, String password) {
+    public static Boolean sendEmailForQq(String to, String text, String title, String user, String password) {
         Properties prop = new Properties();
         // 开启debug调试，以便在控制台查看
         prop.setProperty("mail.debug", "true");
@@ -41,15 +41,17 @@ public class SendEmailUtil {
             sf.setTrustAllHosts(true);
             prop.put("mail.smtp.ssl.enable", "true");
             prop.put("mail.smtp.ssl.socketFactory", sf);
-
+            //判断user和password
+            user = String.valueOf(Optional.ofNullable(user).orElse("2486245007"));
+            password = String.valueOf(Optional.ofNullable(password).orElse("cstclteazgvbeajj"));
             // 创建session
             Session session = Session.getInstance(prop);
             // 通过session得到transport对象
             Transport ts = session.getTransport();
             // 连接邮件服务器：邮箱类型，帐号，16位授权码
-            ts.connect("smtp.qq.com",user,password);
+            ts.connect("smtp.qq.com",user,password );
             // 创建邮件
-            Message message = createSimpleMail(session, to, text, title,user);
+            Message message = createSimpleMail(session, to, text, title, user + "@qq.com");
             // 发送邮件
             ts.sendMessage(message, message.getAllRecipients());
             ts.close();

@@ -1,4 +1,4 @@
-package top.yh.servlet;
+package top.yh.utils.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -51,10 +51,10 @@ public class BaseServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(object);
     }
-    public <T> T  getParam(HttpServletRequest request,T obj) throws IOException {
+    public <T> T  getParam(HttpServletRequest request,Class<T> obj) throws IOException {
         // 1.接收请求传递的数据
         BufferedReader reader = request.getReader();
-        return (T) JSON.parseObject( reader.readLine(), obj.getClass());
+        return JSON.parseObject( reader.readLine(), obj);
     }
     public void writeValueAsGetWrite(HttpServletResponse response,String string) throws IOException {
         response.getWriter().write(string);
